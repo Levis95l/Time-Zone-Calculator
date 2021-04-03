@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Time Zone Calculator</string>
+
+    <string name="inputTime_defaultText">12 pm PST</string>
 </resources>

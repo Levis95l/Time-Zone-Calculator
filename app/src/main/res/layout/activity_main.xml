@@ -16,11 +16,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/inputTimeTextView"
         android:layout_width="345dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="12 pm PST"
+        android:text="@string/inputTime_defaultText"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
