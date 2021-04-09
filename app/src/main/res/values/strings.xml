@@ -1,5 +1,30 @@
 <resources>
     <string name="app_name">Time Zone Calculator</string>
 
-    <string name="inputTime_defaultText">12 pm PST</string>
+    <string-array name="timeZones">
+        <item>PST - Pacific Time (US)</item>
+        <item>MST - Mountain Time (US)</item>
+        <item>CST - Central Time (US)</item>
+        <item>EST - Eastern Time (US)</item>
+        <item>GMT - Greenwich Mean Time</item>
+        <item>CET - Central European Time</item>
+        <item>KALT - Kalingrad Time (RU)</item>
+        <item>MSK - Moscow Time (RU)</item>
+        <item>SAMT - Samara Time (RU)</item>
+        <item>YEKT - Yekateringburg Time (RU)</item>
+        <item>OMST - Omsk Time (RU)</item>
+        <item>KRAT - Krasnoyarsk Time (RU)</item>
+        <item>IRKT - Irkutsk Time (RU)</item>
+        <item>YAKT - Yakutsk Time (RU)</item>
+        <item>VLAT - Vladivostok Time (RU)</item>
+        <item>SRET - Magadan Time (RU)</item>
+        <item>PETT - Kamchatka Time (RU)</item>
+        <item>IST - Indian Standard Time</item>
+        <item>CST - China Standard Time</item>
+        <item>JST - Japan Standard Time</item>
+        <item>AEST - Australian Eastern Standard Time</item>
+        <item>ACST - Australian Central Standard Time</item>
+        <item>AWST - Australian Western Standard Time</item>
+        <item>NZST - New Zealand Standard Time</item>
+    </string-array>
 </resources>
