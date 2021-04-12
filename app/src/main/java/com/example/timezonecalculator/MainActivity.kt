@@ -17,9 +17,10 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val timeZones = resources.getStringArray(R.array.timeZones)
+        val timeZones = resources.getStringArray(R.array.timeZonesShort)
 
         val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, timeZones)
+        val autoCompleteAdapter = AutoCompleteAdapter(this, timeZones.asList())
         binding.inputTimeZoneAutoCompleteTextView.setAdapter(arrayAdapter)
     }
 }

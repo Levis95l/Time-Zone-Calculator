@@ -1,7 +1,36 @@
 <resources>
     <string name="app_name">Time Zone Calculator</string>
 
-    <string-array name="timeZones">
+    <string-array name="timeZonesShort">
+        <item>UTC (International)</item>
+        <item>PST/PDT (US)</item>
+        <item>MST/MDT (US)</item>
+        <item>CST/CDT (US)</item>
+        <item>EST/EDT (US)</item>
+        <item>GMT</item>
+        <item>CET/CEST (Europe)</item>
+        <item>KALT (RU)</item>
+        <item>MSK (RU)</item>
+        <item>SAMT (RU)</item>
+        <item>YEKT (RU)</item>
+        <item>OMST (RU)</item>
+        <item>KRAT (RU)</item>
+        <item>IRKT (RU)</item>
+        <item>YAKT (RU)</item>
+        <item>VLAT (RU)</item>
+        <item>SRET (RU)</item>
+        <item>PETT (RU)</item>
+        <item>IST (IN)</item>
+        <item>CST (CN)</item>
+        <item>JST (JP)</item>
+        <item>AEST (AU)</item>
+        <item>ACST (AU)</item>
+        <item>AWST (AU)</item>
+        <item>NZST (NZ)</item>
+    </string-array>
+
+    <string-array name="timeZonesLong">
+        <item>UTC - Universal Standard Time</item>
         <item>PST - Pacific Time (US)</item>
         <item>MST - Mountain Time (US)</item>
         <item>CST - Central Time (US)</item>
