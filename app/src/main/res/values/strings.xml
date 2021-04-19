@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Time Zone Calculator</string>
 
+    <string name="strFrom">From</string>
+    <string name="strTime">Time</string>
+    <string name="strTimeZone">Time Zone</string>
+    <string name="strDate">Date</string>
+    <string name="strTo">To</string>
+
+
     <string-array name="timeZonesShort">
         <item>UTC (International)</item>
         <item>PST/PDT (US)</item>

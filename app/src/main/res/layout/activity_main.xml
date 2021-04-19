@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--From-->
+    <TextView
+        android:id="@+id/from_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/strFrom"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <!--Time input-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputTime_textInputLayout"
@@ -13,12 +25,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:hint="Time"
+        android:hint="@string/strTime"
         app:layout_constraintEnd_toStartOf="@+id/inputTimeZone_textInputLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/from_textView">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputTime_textInputEditText"
@@ -31,11 +43,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputTimeZone_textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="144dp"
+        android:layout_width="160dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="32dp"
-        android:hint="Time Zone"
+        android:hint="@string/strTimeZone"
         app:layout_constraintBottom_toBottomOf="@+id/inputTime_textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/inputTime_textInputLayout"
@@ -57,14 +69,13 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:hint="Date"
-        app:startIconDrawable="@drawable/ic_baseline_calendar_today_24"
+        android:hint="@string/strDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputTime_textInputLayout">
+        app:layout_constraintStart_toStartOf="@+id/inputTime_textInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/inputTime_textInputLayout"
+        app:startIconDrawable="@drawable/ic_baseline_calendar_today_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputDate_textInputEditText"
@@ -72,6 +83,49 @@
             android:layout_height="wrap_content"
             android:inputType="date" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/to_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/strTo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/from_textView"
+        app:layout_constraintTop_toBottomOf="@+id/inputDate_textInputLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/outputTimeZone_textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/strTimeZone"
+        app:layout_constraintEnd_toEndOf="@+id/inputDate_textInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/inputDate_textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/to_textView">
+
+        <AutoCompleteTextView
+            android:id="@+id/outputTimeZone_autoCompleteTextView"
+            style="@style/Widget.AppCompat.AutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:completionThreshold="1"
+            android:paddingLeft="16dp"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/outputTime_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="testiteksti"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/outputTimeZone_textInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/outputTimeZone_textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/outputTimeZone_textInputLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
