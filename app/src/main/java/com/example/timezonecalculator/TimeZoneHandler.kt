@@ -1,7 +1,10 @@
 package com.example.timezonecalculator
 
 import android.icu.util.TimeZone
+import android.util.Log
 import kotlin.collections.ArrayList
+
+private const val TAG = "TimeZoneHandler"
 
 class TimeZoneLister {
     val timeZones = ArrayList<TimeZone>()
@@ -48,6 +51,10 @@ class TimeZoneLister {
 
     //
     fun convertTime(date: Long, tz1: TimeZone, tz2: TimeZone): Long {
+
+        Log.d(TAG, "Current date is $date")
+        Log.d(TAG, "Input timezone offset is " + tz1.getOffset(date))
+        Log.d(TAG, "Output timezone offset is " + tz2.getOffset(date) + "\n")
         return date - tz1.getOffset(date) + tz2.getOffset(date)
     }
 }

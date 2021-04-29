@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import com.example.timezonecalculator.databinding.ActivityMainBinding
-import android.icu.text.DateFormat
+import android.icu.text.SimpleDateFormat
+import android.icu.util.Calendar
+import android.util.Log
+
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -64,14 +68,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateDate() {
-        inputDate = System.currentTimeMillis()
+        val cal = Calendar.getInstance()
+
+        //Parse input string to hours and minutes
+        var hour = 0; var minute = 0;
+        val timeString = binding.inputTimeTextInputEditText.text
+        val i: Int? = timeString?.indexOf(':')
+        if (i != null) {
+            try {
+                hour = timeString.substring(0, i).toInt()
+                minute = timeString.substring(i+1).toInt()
+            } catch (nfe: NumberFormatException) {
+                Log.e(TAG, "Invalid time input. Should be in format \"[int]:[int]\".")
+            }
+        }
+
+        cal.set(cal.get(1), cal.get(2), cal.get(5), hour, minute)
+        inputDate = cal.timeInMillis
     }
 
     private fun inputUpdated() {
         if (inputTimeZone != null && outputTimeZone != null) {
-            val date = timeZoneHandler.convertTime(inputDate, timeZoneHandler.timeZones[inputTimeZone!!], timeZoneHandler.timeZones[outputTimeZone!!])
+            val outputDate = timeZoneHandler.convertTime(inputDate, timeZoneHandler.timeZones[inputTimeZone!!], timeZoneHandler.timeZones[outputTimeZone!!])
+            //Calendar.getInstance()
+            val cal = Calendar.getInstance()
+            cal.timeInMillis = outputDate
+            val formatter = SimpleDateFormat.getDateTimeInstance() //or use getDateInstance()
+            val formattedDate = formatter.format(cal.time)
 
-            binding.outputTimeTextView.text = "" + date
+            binding.outputTimeTextView.text = "" + formattedDate
         }
 
 
