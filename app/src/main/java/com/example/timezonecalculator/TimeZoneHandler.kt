@@ -71,11 +71,17 @@ class TimeZoneHandler {
     }*/
 
     //
+    fun findZoneByShortName(shortName: String): TimeZone {
+        val i = shortNames.indexOf(shortName)
+        return timeZones.get(i)
+    }
+
+    //
     fun convertTime(date: Long, tz1: TimeZone, tz2: TimeZone): Long {
 
         Log.d(TAG, "Current date is $date")
-        Log.d(TAG, "Input timezone is " + tz1.id + " and offset is " + tz1.getOffset(date))
-        Log.d(TAG, "Output timezone offset is " + tz2.getOffset(date) + "\n")
+        Log.d(TAG, "Input timezone is " + tz1.id + " and offset " + tz1.getOffset(date))
+        Log.d(TAG, "Output timezone is "+ tz2.id + " and offset " + tz2.getOffset(date) + "\n")
         return date - tz1.getOffset(date) + tz2.getOffset(date)
     }
 }

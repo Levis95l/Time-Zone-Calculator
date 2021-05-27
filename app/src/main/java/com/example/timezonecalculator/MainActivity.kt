@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val timeZoneHandler = TimeZoneHandler()
     private var inputDate: Long = 0
-    private var inputTimeZone: Int? = null
-    private var outputTimeZone: Int? = null
+    private var inputTimeZone: String? = null
+    private var outputTimeZone: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,13 +62,13 @@ class MainActivity : AppCompatActivity() {
         //Set Time Zone Lists and listeners for them
         binding.inputTimeZoneAutoCompleteTextView.setAdapter(arrayAdapter)
         binding.inputTimeZoneAutoCompleteTextView.setOnItemClickListener { _, _, position, _ ->
-            inputTimeZone = position
+            inputTimeZone = arrayAdapter.getItem(position).toString()
             inputUpdated()
         }
 
         binding.outputTimeZoneAutoCompleteTextView.setAdapter(arrayAdapter)
         binding.outputTimeZoneAutoCompleteTextView.setOnItemClickListener { _, _, position, _ ->
-            outputTimeZone = position
+            outputTimeZone = arrayAdapter.getItem(position).toString()
             inputUpdated()
         }
     }
@@ -96,8 +96,7 @@ class MainActivity : AppCompatActivity() {
     private fun inputUpdated() {
         if (inputTimeZone != null && outputTimeZone != null) {
 
-            //val outputDate = timeZoneHandler.convertTime(inputDate, timeZoneHandler.timeZones[inputTimeZone!!], timeZoneHandler.timeZones[outputTimeZone!!])
-            val outputDate = timeZoneHandler.convertTime(inputDate, timeZoneHandler.timeZones[inputTimeZone!!], timeZoneHandler.timeZones[outputTimeZone!!])
+            val outputDate = timeZoneHandler.convertTime(inputDate, timeZoneHandler.findZoneByShortName(inputTimeZone!!), timeZoneHandler.findZoneByShortName(outputTimeZone!!))
 
             //Calendar.getInstance()
             val cal = Calendar.getInstance()
