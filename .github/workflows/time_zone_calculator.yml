@@ -42,4 +42,11 @@ jobs:
     
       - uses: actions/checkout@v2
       
-      - run: src\test\java\com\example\timezonecalculator\ExampleUnitTest.kt
+      - name: Example Unit Test
+        run: src\test\java\com.example.timezonecalculator\ExampleUnitTest.kt
+      
+      - name: Run Tests
+        run: ./gradlew test
+
+      - name: Build Project
+        run: ./gradlew assemble
