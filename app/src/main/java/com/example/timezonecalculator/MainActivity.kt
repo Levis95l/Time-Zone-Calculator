@@ -12,7 +12,7 @@ private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val timeZoneHandler = TimeZoneLister()
+    private val timeZoneHandler = TimeZoneHandler()
     private var inputDate: Long = 0
     private var inputTimeZone: Int? = null
     private var outputTimeZone: Int? = null
@@ -30,19 +30,25 @@ class MainActivity : AppCompatActivity() {
         //val timeZones = resources.getStringArray(R.array.timeZonesShort)
         //val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, timeZones)
 
+        //Get string arrays from strings.xml
+        val ids = resources.getStringArray(R.array.timeZonesID)
+        val nms = resources.getStringArray(R.array.timeZonesShort)
+        val nml = resources.getStringArray(R.array.timeZonesLong)
+
         //Better system: System supported timezones
+        timeZoneHandler.updateAvailableZones(ids, nms, nml)
 
-        timeZoneHandler.updateAvailableZones()
-
-
-        val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, timeZoneHandler.displayNames)
+        val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, timeZoneHandler.shortNames)
 
         //Improving search for manual list: Custom auto complete
         //val autoCompleteAdapter = AutoCompleteAdapter(this, timeZones.asList())
 
         //Listener Time
         binding.inputTimeTextInputEditText.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) updateDate()
+            if (!hasFocus) {
+                updateDate()
+                inputUpdated()
+            }
         }
 
         //Listener Date
@@ -83,13 +89,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        cal.set(cal.get(1), cal.get(2), cal.get(5), hour, minute)
+        cal.set(cal.get(1), cal.get(2), cal.get(5), hour, minute, 0)
         inputDate = cal.timeInMillis
     }
 
     private fun inputUpdated() {
         if (inputTimeZone != null && outputTimeZone != null) {
+
+            //val outputDate = timeZoneHandler.convertTime(inputDate, timeZoneHandler.timeZones[inputTimeZone!!], timeZoneHandler.timeZones[outputTimeZone!!])
             val outputDate = timeZoneHandler.convertTime(inputDate, timeZoneHandler.timeZones[inputTimeZone!!], timeZoneHandler.timeZones[outputTimeZone!!])
+
             //Calendar.getInstance()
             val cal = Calendar.getInstance()
             cal.timeInMillis = outputDate
