@@ -43,4 +43,3 @@ jobs:
       - uses: actions/checkout@v2
       
       - run: src\test\java\com\example\timezonecalculator\ExampleUnitTest.kt
-      
