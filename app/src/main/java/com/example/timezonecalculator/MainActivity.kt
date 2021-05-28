@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doOnTextChanged
 import com.example.timezonecalculator.databinding.ActivityMainBinding
 import java.util.*
 
@@ -49,17 +50,18 @@ class MainActivity : AppCompatActivity() {
         //val autoCompleteAdapter = AutoCompleteAdapter(this, timeZones.asList())
 
         //Listener Time
-        /*
-        binding.inputTimeTextInputEditText.setOnClickListener {
+
+        binding.inputTimeTextInputEditText.doOnTextChanged { _, _, _, _ ->
             updateDate()
             inputUpdated()
-        }*/
+        }
+        /*
         binding.inputTimeTextInputEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 updateDate()
                 inputUpdated()
             }
-        }
+        }*/
 
         //Listener Date
         binding.inputDateTextInputEditText.setOnFocusChangeListener { _, hasFocus ->
@@ -103,6 +105,13 @@ class MainActivity : AppCompatActivity() {
         cal.set(cal.get(1), cal.get(2), cal.get(5), hour, minute, 0)
         inputDate = cal.timeInMillis
     }
+    private fun updateDate(hour: Int, minute: Int) {
+        val cal = Calendar.getInstance()
+
+        cal.set(cal.get(1), cal.get(2), cal.get(5), hour, minute, 0)
+        inputDate = cal.timeInMillis
+        binding.inputTimeTextInputEditText.setText("" + hour + ":" + minute)
+    }
 
     private fun inputUpdated() {
         if (inputTimeZone != null && outputTimeZone != null) {
@@ -119,7 +128,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     fun showTimePickerDialog(v: View) {
-        TimePickerFragment().show(supportFragmentManager, "timePicker")
+        TimePickerFragment(binding.inputTimeTextInputEditText).show(supportFragmentManager, "timePicker")
     }
 }
